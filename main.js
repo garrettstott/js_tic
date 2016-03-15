@@ -1,48 +1,50 @@
 window.onload = function() {
-  
-var rock = document.getElementById('rock');
-rock.addEventListener("click", rockFun);
 
-var paper = document.getElementById('paper');
-paper.addEventListener("click", paperFun);
+  var rock = document.getElementById('rock');
+  rock.addEventListener("click", rockFun);
 
-var scissors = document.getElementById('scissors');
-scissors.addEventListener("click", scissorFun);
+  var paper = document.getElementById('paper');
+  paper.addEventListener("click", paperFun);
 
-var winner = document.getElementById('winner');
+  var scissors = document.getElementById('scissors');
+  scissors.addEventListener("click", scissorFun);
 
-var playerTotal = document.getElementById('player_total');
-var computerTotal = document.getElementById('computer_total');
-var tieTotal = document.getElementById('tie_total');
-var wins = 0;
-var losses = 0;
-var ties = 0;
+  var resetTotals = document.getElementById('reset_totals');
+  resetTotals.addEventListener("click", resetTotal);
 
-function rockFun() {
-  player = 'rock'
-  computerChoice(player)
-}
+  var winner = document.getElementById('winner');
+  var playerTotal = document.getElementById('player_total');
+  var computerTotal = document.getElementById('computer_total');
+  var tieTotal = document.getElementById('tie_total');
+  var wins = 0;
+  var losses = 0;
+  var ties = 0;
 
-function paperFun() {
-  player = 'paper'
-  computerChoice(player)
-}
+  function rockFun() {
+    player = 'rock';
+    computerChoice(player);
+  }
 
-function scissorFun() {
-  player = 'scissors'
-  computerChoice(player)
-} 
+  function paperFun() {
+    player = 'paper';
+    computerChoice(player);
+  }
 
-function computerChoice(player) {
+  function scissorFun() {
+    player = 'scissors';
+    computerChoice(player);
+  }
+
+  function computerChoice(player) {
   comp = (Math.ceil(Math.random() * 3));
     if (comp == 1) {
-        comp = 'rock'
+        comp = 'rock';
     } else if (comp == 2) {
-        comp = 'paper'
+        comp = 'paper';
     } else {
-        comp = 'scissors'
+        comp = 'scissors';
     }
-    compareInputs(comp, player)
+    compareInputs(comp, player);
   }
 
   function compareInputs(comp, player) {
@@ -68,7 +70,7 @@ function computerChoice(player) {
       result = "Computer Wins";
       console.log('Computer Wins');
     }
-    outCome(result)
+    outCome(result);
   }
 
   function outCome(result) {
@@ -80,21 +82,18 @@ function computerChoice(player) {
       winner.style.color = '#f44336';
       computerTotal.innerHTML = 'Computer: ' + (losses += 1);
     } else {
-      winner.style.color = 'white';
+      winner.style.color = '#b2ebf2';
       tieTotal.innerHTML = 'Ties: ' + (ties += 1);
     }
   }
+
+  function resetTotal(resetTotals) {
+    playerTotal.innerHTML = 'Player:';
+    wins = 0;
+    computerTotal.innerHTML = 'Computer:';
+    losses = 0;
+    tieTotal.innerHTML = 'Ties:';
+    ties = 0;
+    winner.innerHTML = '';
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
