@@ -15,6 +15,9 @@ window.onload = function() {
   var winner = document.getElementById('winner');
   var playerTotal = document.getElementById('player_total');
   var computerTotal = document.getElementById('computer_total');
+  var percent = document.getElementById('percent');
+  var playerInput = document.getElementById('player_input');
+  var computerInput = document.getElementById('computer_input');
   var tieTotal = document.getElementById('tie_total');
   var wins = 0;
   var losses = 0;
@@ -48,6 +51,7 @@ window.onload = function() {
   }
 
   function compareInputs(comp, player) {
+    whoWonFun(comp, player)
     if (comp == player) {
       result = "Tie";
       console.log('Tie');
@@ -85,6 +89,7 @@ window.onload = function() {
       winner.style.color = '#b2ebf2';
       tieTotal.innerHTML = 'Ties: ' + (ties += 1);
     }
+    percentWon(wins, losses, ties);
   }
 
   function resetTotal(resetTotals) {
@@ -95,5 +100,19 @@ window.onload = function() {
     tieTotal.innerHTML = 'Ties:';
     ties = 0;
     winner.innerHTML = '';
+    percent.innerHTML = 'Win Percent: ';
+    playerInput.innerHTML = 'Player: ';
+    computerInput.innerHTML = 'Computer: ';
+  }
+
+  function percentWon(wins, losses, ties) {
+    percentOut = (wins / (wins + losses + ties));
+    percentOut = (Math.floor(percentOut * 100));
+    percent.innerHTML = 'Win Percent: ' + (percentOut) + "%";
+  }
+
+  function whoWonFun(comp, player) {
+    playerInput.innerHTML = 'Player: ' + player; 
+    computerInput.innerHTML = 'Computer: ' + comp;
   }
 }
